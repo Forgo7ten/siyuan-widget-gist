@@ -1,0 +1,87 @@
+name: Release siyuan-widget-gist
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.4.0
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Read release version from widget.json
+        id: version
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        env:
+          SELECTED_REF: ${{ github.ref_name }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: bash scripts/release/read-version.sh
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate version and syntax
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ steps.version.outputs.release_tag || github.ref_name }}
+        run: |
+          test "${RELEASE_TAG#v}" = "$(node -p "require('./package.json').version")"
+          test "${RELEASE_TAG#v}" = "$(node -p "require('./widget.json').version")"
+          pnpm run check
+
+      - name: Build archive
+        run: |
+          pnpm run build:fast
+          pnpm run package:verify
+          unzip -t package.zip
+
+      - name: Reconcile release tag
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ steps.version.outputs.release_tag }}
+        run: bash scripts/release/reconcile-tag.sh
+
+      - name: Publish manual release
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ steps.version.outputs.release_tag }}
+        run: |
+          gh release create "${RELEASE_TAG}" package.zip \
+            --target "${GITHUB_SHA}" \
+            --title "siyuan-widget-gist ${RELEASE_TAG}" \
+            --generate-notes
+
+      - name: Publish tag release
+        if: ${{ github.event_name == 'push' }}
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: package.zip
+          allowUpdates: true
+          artifactErrorsFailBuild: true
+          token: ${{ secrets.GITHUB_TOKEN }}

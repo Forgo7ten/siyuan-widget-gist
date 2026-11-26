@@ -1,100 +1,103 @@
-[English](https://github.com/siyuan-note/widget-sample/blob/main/README.md)
+<div align="center">
+  <img src="assets/icon.svg" alt="GitHub Gist Widget Logo" width="128" height="128" />
 
-# 思源笔记挂件示例
+  # GitHub Gist
 
-## 开始
+  <p>思源笔记 GitHub Gist 代码片段嵌入挂件</p>
 
-* 通过 <kbd>Use this template</kbd> 按钮将该库文件复制到你自己的库中，请注意库名必须和挂件名称一致，默认分支必须为 `main`
-* 将你的库克隆到本地开发文件夹中，为了方便可以直接将开发文件夹放置在 `{workspace}/data/widgets/` 下
+  <p>
+    <a href="https://github.com/Forgo7ten/siyuan-widget-gist/releases"><img src="https://img.shields.io/badge/Release-v1.0.0-blue.svg?style=flat-square" alt="Release" /></a>
+    <a href="https://b3log.org/siyuan/"><img src="https://img.shields.io/badge/SiYuan-%E2%89%A53.7.0-6c5ce7.svg?style=flat-square" alt="SiYuan Support" /></a>
+  </p>
 
-## 开发
+  <p>
+    <b>简体中文</b> • <a href="README.md">English</a>
+  </p>
 
-* widget.json
-* icon.png（可选默认图标，160*160）
-* preview.png（可选默认预览图，1024*768）
-* README*.md
-* index.html
+  <p>
+    <a href="#概述">概述</a> •
+    <a href="#功能特点">功能特点</a> •
+    <a href="#使用说明">使用说明</a> •
+    <a href="#安装方式">安装方式</a> •
+    <a href="#开发与构建">开发与构建</a>
+  </p>
+</div>
 
-## widget.json
+---
 
-```json
-{
-  "name": "widget-sample",
-  "author": "Vanessa",
-  "url": "https://github.com/siyuan-note/widget-sample",
-  "version": "0.0.5",
-  "minAppVersion": "3.7.0",
-  "displayName": {
-    "default": "Widget Sample",
-    "zh-CN": "挂件示例"
-  },
-  "description": {
-    "default": "This is a widget sample",
-    "zh-CN": "这是一个挂件示例"
-  },
-  "readme": {
-    "default": "README.md",
-    "zh-CN": "README.zh-CN.md"
-  },
-  "icon": "icon.png",
-  "preview": "preview.png",
-  "funding": {
-    "openCollective": "",
-    "patreon": "",
-    "github": "",
-    "custom": [
-      "https://ld246.com/sponsor"
-    ]
-  },
-  "keywords": [
-    "sample", "示例"
-  ]
-}
+# 概述
+
+**siyuan-widget-gist** 是面向 [思源笔记（SiYuan Note）](https://b3log.org/siyuan/) 的独立挂件，用于在文档中直接嵌入并展示 GitHub Gist 代码片段。粘贴 Gist 链接或嵌入代码即可自动加载，并随思源浅色与深色外观自动切换代码配色。
+
+---
+
+# 功能特点
+
+- **从 `/挂件` 菜单插入**：通过思源编辑器内置 `/挂件` 菜单选择 `GitHub Gist` 即可插入，同一篇笔记支持插入多个互不干扰的 Gist 挂件。
+- **常驻地址栏与移开焦点自动保存**：顶部地址栏常驻显示；平时处于置灰只读状态以减少阅读干扰，双击输入框或点击「编辑」即可高亮编辑，按 `Enter` 或将鼠标焦点移开输入框自动保存并刷新，按 `Esc` 取消修改。
+- **支持思源折叠与展开**：折叠挂件块时仅保留顶部 Gist 地址栏并收起下方代码块，展开后自动重新加载展示代码内容。
+- **随笔记保存与同步**：Gist 地址保存在挂件块自身的 `custom-gist-url` 属性中，随思源文档一起保存和同步，重新打开文档时自动加载。
+- **明暗主题样式优化**：对 GitHub Gist 默认卡片边框、行号栏、代码字体与滚动条进行了排版美化，并完整适配思源浅色与深色主题下的代码语法高亮。
+- **失败自动重试与快捷操作**：网络波动导致加载失败时自动等待并重试（最多 10 次），顶栏右侧提供「刷新 Gist」与「编辑 URL」快捷按钮。
+- **高度自动适配**：挂件高度跟随代码实际内容自动伸缩，完整展示代码片段，无需手动拖拽调整高度。
+
+---
+
+# 使用说明
+
+1. 在思源笔记正文中输入 `/挂件`，选择 **GitHub Gist** 插入挂件；
+2. 在顶部输入框中粘贴以下任意一种格式的 Gist 地址，按 `Enter` 或将鼠标焦点移开输入框即可自动保存并加载：
+
+```text
+https://gist.github.com/Forgo7ten/e0c40452cf8a0e8e4a9691136596a991
+https://gist.github.com/Forgo7ten/e0c40452cf8a0e8e4a9691136596a991.js
+https://gist.github.com/Forgo7ten/e0c40452cf8a0e8e4a9691136596a991.js?file=example.py
+<script src="https://gist.github.com/Forgo7ten/e0c40452cf8a0e8e4a9691136596a991.js"></script>
 ```
 
-* `name`：挂件名称，必须和库名一致，且全局唯一（集市中不能有重名挂件）
-* `author`：挂件作者名
-* `url`：挂件仓库地址
-* `version`：挂件版本号，建议遵循 [semver](https://semver.org/lang/zh-CN/) 规范
-* `minAppVersion`：挂件支持的最低思源笔记版本号
-* `displayName`：挂件显示名称，主要用于挂件集市列表中显示，支持多语言
-    * `default`：默认语言，必须存在
-    * `zh-CN`、`en` 等其他语言：可选，须为 [BCP 47](https://tools.ietf.org/html/bcp47) 标签（如 `zh-CN`、`zh-TW`、`en`、`ja`、`pt-BR`）
-* `description`：挂件描述，主要用于挂件集市列表中显示，支持多语言
-    * `default`：默认语言，必须存在
-    * `zh-CN`、`en` 等其他语言：可选，须为 BCP 47 标签
-* `readme`：自述文件名，主要用于挂件集市详情页中显示，支持多语言
-    * `default`：默认语言，必须存在
-    * `zh-CN`、`en` 等其他语言：可选，须为 BCP 47 标签
-    * 相对图片存在于 `package.zip` 时从本地加载，否则在线集市会回退到对应的 GitHub Release；如需离线显示，请将图片打入 `package.zip`
-* `icon`：可选的集市图标文件名，图片必须位于包根目录；支持 PNG、JPEG、WebP 和 AVIF，最大 64 KiB，建议尺寸为 160*160
-* `preview`：可选的集市预览图文件名，图片必须位于包根目录；支持 PNG、JPEG、WebP 和 AVIF，最大 512 KiB，建议尺寸为 1024*768
-    * 不支持 SVG。不需要图片时，请删除对应字段及传统文件 `icon.png` 或 `preview.png`，字段值不能为空字符串
-* `funding`：挂件赞助信息
-    * `openCollective`：Open Collective 名称
-    * `patreon`：Patreon 名称
-    * `github`：GitHub 登录名
-    * `custom`：自定义赞助链接列表
-    * `links`：带标签的自定义赞助链接列表，例如 `{"label": "赞助", "url": "https://example.com"}`
-* `keywords`：搜索关键字列表，用于集市搜索功能
+3. 保存成功后地址栏自动切换为置灰锁定状态；需要更换地址时双击输入框或点击右侧「编辑 URL」图标，需要获取远程最新内容时点击「刷新 Gist」图标。
 
-## 打包
+---
 
-无论使用何种方式编译打包，我们最终需要生成一个 package.zip，它至少包含如下文件：
+# 安装方式
 
-* `icon` 和 `preview` 字段声明的图片文件（可选）
-* README*.md
-* widget.json
-* index.html
+- **方式一：思源集市安装（推荐）**  
+  在思源笔记中打开 **设置 -> 集市 -> 挂件**，搜索 `GitHub Gist` 并点击下载。
+- **方式二：手动安装**  
+  前往 [Releases 页面](https://github.com/Forgo7ten/siyuan-widget-gist/releases) 下载 `package.zip`，解压至思源工作空间挂件目录 `data/widgets/siyuan-widget-gist/`。
 
-## 上架集市
+---
 
-* 生成 package.zip
-* 在 GitHub 上创建一个新的发布，使用挂件版本号作为 “Tag
-  version”，示例 https://github.com/siyuan-note/widget-sample/releases
-* 上传 package.zip 作为二进制附件
-* 提交发布
+# 开发与构建
 
-首次发布时，请 Fork [社区集市仓库](https://github.com/siyuan-note/bazaar)，在根目录的 `widgets.txt` 中新增一行 `owner/repo`，然后向 `main` 分支提交 PR。每行一个仓库，不添加逗号或空行；每个新增包 PR 只添加一个包。完整流程和审核规则请参阅[提交集市包](https://github.com/siyuan-note/bazaar/blob/main/README.zh-CN.md#提交集市包)。
+### 环境要求
+- Node.js >= 24.0.0
+- pnpm >= 11.4.0
+- 思源笔记 >= 3.7.0
 
-PR 合并后，集市会自动更新索引。后续更新只需提升清单中的 `version` 并发布包含 `package.zip` 的正式 GitHub Release，无需再次提交上架 PR。更新时效和排错方法请参阅[更新集市包](https://github.com/siyuan-note/bazaar/blob/main/README.zh-CN.md#更新集市包)，部署状态可在 [Stage 工作流](https://github.com/siyuan-note/bazaar/actions/workflows/stage.yml) 查看。
+### 常用命令
+```bash
+# 安装构建依赖
+pnpm install
+
+# 语法静态检查
+pnpm run check
+
+# 渲染 SVG 图标并打包 dist/ 与 package.zip
+pnpm run build
+
+# 校验产物清单、PNG 标头与压缩包结构
+pnpm run package:verify
+
+# 打包并安全安装到本地思源工作区
+pnpm run install:workspace -- "/path/to/SiYuan/workspace"
+
+# 同步升级 package.json 与 widget.json 版本号
+pnpm run version:bump
+
+# 运行本地发版全链路校验
+pnpm run release
+
+# 清理生成的构建产物
+pnpm run clean
+```

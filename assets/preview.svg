@@ -1,0 +1,104 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="768" viewBox="0 0 1024 768">
+  <defs>
+    <linearGradient id="bgp1" x1="0" y1="0" x2="1024" y2="768" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4F1FF"/>
+      <stop offset=".55" stop-color="#F1F6FF"/>
+      <stop offset="1" stop-color="#E5FAF8"/>
+    </linearGradient>
+    <linearGradient id="titlep1" x1="88" y1="120" x2="420" y2="210" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6955E8"/>
+      <stop offset=".55" stop-color="#8062EC"/>
+      <stop offset="1" stop-color="#10BCCA"/>
+    </linearGradient>
+    <linearGradient id="barp1" x1="110" y1="320" x2="914" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6D5CE7"/>
+      <stop offset="1" stop-color="#18BDCE"/>
+    </linearGradient>
+    <filter id="shadowp1" x="40" y="270" width="944" height="480" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="20" stdDeviation="22" flood-color="#51458F" flood-opacity=".15"/>
+    </filter>
+  </defs>
+
+  <rect width="1024" height="768" rx="0" fill="url(#bgp1)"/>
+  <circle cx="936" cy="92" r="150" fill="#9B8AFB" opacity=".10"/>
+  <circle cx="55" cy="680" r="160" fill="#30C8D0" opacity=".09"/>
+  <circle cx="900" cy="620" r="100" fill="#FFFFFF" opacity=".35"/>
+
+  <rect x="80" y="65" width="49" height="49" rx="14" fill="url(#titlep1)"/>
+  <path d="M94 80L103 75L112 80V94L103 99L94 94V80Z" stroke="#FFFFFF" stroke-width="2.5" fill="none"/>
+  <path d="M99 84L95 87L99 90M107 84L111 87L107 90" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+  <text x="145" y="87" font-family="Arial,sans-serif" font-size="17" font-weight="800" letter-spacing="2" fill="#514A8C">GITHUB GIST</text>
+  <text x="145" y="108" font-family="Arial,sans-serif" font-size="12" font-weight="600" letter-spacing="1.5" fill="#8B86AD">SIYUAN WIDGET</text>
+
+  <rect x="788" y="75" width="155" height="35" rx="17.5" fill="#FFFFFF" opacity=".8"/>
+  <circle cx="808" cy="92.5" r="5" fill="#16C5A5"/>
+  <text x="822" y="97" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#68628F">CODE EMBED</text>
+
+  <text x="80" y="215" font-family="Arial,sans-serif" font-size="112" font-weight="900" letter-spacing="-7" fill="url(#titlep1)">gist</text>
+  <text x="84" y="252" font-family="Arial,sans-serif" font-size="21" font-weight="500" fill="#68648B">Your code snippets, beautifully embedded in SiYuan.</text>
+
+  <g filter="url(#shadowp1)">
+    <rect x="80" y="290" width="864" height="412" rx="25" fill="#FFFFFF"/>
+  </g>
+
+  <path d="M105 290H919C933 290 944 301 944 315V349H80V315C80 301 91 290 105 290Z" fill="#F8F8FD"/>
+  <circle cx="111" cy="320" r="6" fill="#FC7185"/>
+  <circle cx="132" cy="320" r="6" fill="#F8C65A"/>
+  <circle cx="153" cy="320" r="6" fill="#38C99A"/>
+
+  <rect x="190" y="306" width="30" height="28" rx="7" fill="#E9E5FF"/>
+  <path d="M199 314L195 320L199 326M211 314L215 320L211 326" stroke="#7765DF" stroke-width="2" stroke-linecap="round"/>
+  <text x="234" y="326" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#464263">example.js</text>
+
+  <rect x="773" y="306" width="143" height="28" rx="14" fill="#E7F8F5"/>
+  <circle cx="790" cy="320" r="4" fill="#13B99C"/>
+  <text x="802" y="325" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing=".6" fill="#138C7A">GIST EMBED</text>
+
+  <path d="M80 349H944" stroke="#E9E8F2"/>
+
+  <text x="113" y="397" font-family="Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" fill="#AAA7C1">SOURCE CODE</text>
+
+  <g font-family="Consolas,Monaco,monospace" font-size="18">
+    <text x="118" y="447" fill="#A3A0B9">01</text>
+    <text x="164" y="447" fill="#815BE4">function</text>
+    <text x="252" y="447" fill="#334155"> hello(name) {</text>
+
+    <text x="118" y="487" fill="#A3A0B9">02</text>
+    <text x="164" y="487" fill="#334155">  return </text>
+    <text x="249" y="487" fill="#0D9D91">`Hello, </text>
+    <text x="331" y="487" fill="#D97706">${name}</text>
+    <text x="390" y="487" fill="#0D9D91">!`;</text>
+
+    <text x="118" y="527" fill="#A3A0B9">03</text>
+    <text x="164" y="527" fill="#334155">}</text>
+
+    <text x="118" y="567" fill="#A3A0B9">04</text>
+    <text x="118" y="607" fill="#A3A0B9">05</text>
+    <text x="164" y="607" fill="#815BE4">console</text>
+    <text x="247" y="607" fill="#334155">.log(hello(</text>
+    <text x="358" y="607" fill="#0D9D91">'SiYuan'</text>
+    <text x="442" y="607" fill="#334155">));</text>
+  </g>
+
+  <path d="M650 377V660" stroke="#EFEEF5" stroke-width="1.5"/>
+
+  <rect x="686" y="393" width="220" height="215" rx="18" fill="#F7F6FF"/>
+  <rect x="714" y="421" width="164" height="108" rx="14" fill="url(#barp1)"/>
+  <rect x="730" y="438" width="132" height="74" rx="9" fill="#FFFFFF" opacity=".16"/>
+  <path d="M760 461L744 474L760 487M832 461L848 474L832 487" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M815 457L778 491" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+  <text x="796" y="557" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="800" fill="#514B85">One URL. One Gist.</text>
+  <text x="796" y="581" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#8580A6">Always ready in your notes.</text>
+
+  <rect x="686" y="624" width="104" height="37" rx="11" fill="#EDE9FF"/>
+  <path d="M705 642A8 8 0 1 1 711 650" stroke="#715DE2" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M705 636L705 643L712 643" stroke="#715DE2" stroke-width="2" fill="none"/>
+  <text x="721" y="647" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#6654CB">Refresh</text>
+
+  <rect x="800" y="624" width="106" height="37" rx="11" fill="#E4F7F5"/>
+  <path d="M818 649L831 636M818 649L817 640M818 649L827 648" stroke="#139C8E" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="839" y="647" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#138C7A">Edit URL</text>
+
+  <text x="512" y="739" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" letter-spacing="1.3" fill="#8A85AA">LIGHTWEIGHT  ·  LIVE  ·  EMBEDDED</text>
+</svg>

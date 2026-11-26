@@ -1,16 +1,16 @@
 {
-  "name": "widget-sample",
-  "author": "Vanessa",
-  "url": "https://github.com/siyuan-note/widget-sample",
-  "version": "0.0.5",
+  "name": "siyuan-widget-gist",
+  "author": "Forgo7ten",
+  "url": "https://github.com/Forgo7ten/siyuan-widget-gist",
+  "version": "1.0.0",
   "minAppVersion": "3.7.0",
   "displayName": {
-    "default": "Widget Sample",
-    "zh-CN": "挂件示例"
+    "default": "GitHub Gist",
+    "zh-CN": "GitHub Gist"
   },
   "description": {
-    "default": "This is a widget sample",
-    "zh-CN": "这是一个挂件示例"
+    "default": "Insert and display GitHub Gist code snippets in SiYuan Note. Paste a Gist link or embed code to load automatically.",
+    "zh-CN": "在思源笔记中插入并展示 GitHub Gist 代码片段，粘贴 Gist 链接或嵌入代码即可自动加载。"
   },
   "readme": {
     "default": "README.md",
@@ -22,11 +22,14 @@
     "openCollective": "",
     "patreon": "",
     "github": "",
-    "custom": [
-      "https://ld246.com/sponsor"
-    ]
+    "custom": []
   },
   "keywords": [
-    "sample", "示例"
+    "gist",
+    "github",
+    "code",
+    "embed",
+    "代码",
+    "挂件"
   ]
 }

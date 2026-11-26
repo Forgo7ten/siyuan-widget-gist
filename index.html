@@ -1,59 +1,56 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Hello, Bootstrap Table!</title>
-
-    <link rel="stylesheet" href="static/bootstrap.min.css">
-    <link rel="stylesheet" href="static/bootstrap-table.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GitHub Gist</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<table id="table">
-</table>
-
-<script src="static/jquery.min.js"></script>
-<script src="static/popper.min.js"></script>
-<script src="static/bootstrap.min.js"></script>
-<script src="static/bootstrap-table.min.js"></script>
-
-<script>
-    $.ajax({
-        method: "POST",
-        url: "/api/query/sql",
-        data: JSON.stringify({
-            "stmt": "SELECT * FROM blocks WHERE content LIKE'%content%' LIMIT 7"
-        })
-    }).done(result => {
-        console.log(result);
-
-        $('#table').bootstrapTable({
-            sortable: true,
-            columns: [{
-                field: 'id',
-                title: 'ID',
-                width: "100",
-            }, {
-                field: 'content',
-                title: 'Content',
-                width: "100",
-            }, {
-                field: 'type',
-                title: 'Type',
-                width: "20",
-            }, {
-                field: 'created',
-                title: 'Created',
-                width: "100",
-            }, {
-                field: 'updated',
-                title: 'Updated',
-                width: "100",
-            }
-            ],
-            data: result.data,
-        });
-    })
-</script>
+<div id="app">
+    <div id="bar" class="gist-bar" data-editing="true">
+        <div id="field" class="gist-field">
+            <span class="gist-fold-badge" aria-hidden="true">
+                <svg viewBox="0 0 12 12">
+                    <path d="M3.5 2.2 9.2 6 3.5 9.8Z"/>
+                </svg>
+                <span>GitHub Gist</span>
+            </span>
+            <span class="gist-field-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <polyline points="16 18 22 12 16 6"/>
+                    <polyline points="8 6 2 12 8 18"/>
+                </svg>
+            </span>
+            <input
+                id="url-input"
+                class="gist-input"
+                type="text"
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="粘贴 GitHub Gist 链接或嵌入代码，回车或移开焦点自动加载"
+                aria-label="GitHub Gist URL"
+            >
+            <span id="state-tag" class="gist-state-tag" hidden>编辑中</span>
+        </div>
+        <div id="toolbar" class="gist-actions">
+            <button id="refresh-btn" class="gist-btn" type="button" title="刷新 Gist" aria-label="刷新 Gist" disabled>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21 12a9 9 0 1 1-2.64-6.36"/>
+                    <path d="M21 3v6h-6"/>
+                </svg>
+            </button>
+            <button id="edit-btn" class="gist-btn" type="button" title="编辑 URL" aria-label="编辑 URL" data-active="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 20h9"/>
+                    <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div id="status" class="gist-status" role="status" aria-live="polite" hidden></div>
+    <div id="viewer" class="gist-viewer" hidden></div>
+</div>
+<script type="module" src="./main.js"></script>
 </body>
 </html>

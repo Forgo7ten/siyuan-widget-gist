@@ -1,103 +1,101 @@
-[中文](https://github.com/siyuan-note/widget-sample/blob/main/README.zh-CN.md)
+<div align="center">
+  <img src="assets/icon.svg" alt="GitHub Gist Widget Logo" width="128" height="128" />
 
-# SiYuan widget sample
+  # GitHub Gist
 
-## Get started
+  <p>A GitHub Gist embed widget for SiYuan Note</p>
 
-* Make a copy of this repo as a template with the <kbd>Use this template</kbd> button, please note that the repo name must be the same as the widget name, the default branch must be `main`
-* Clone your repo to a local development folder. For convenience, you can place this folder in
-  your `{workspace}/data/widgets/` folder
+  <p>
+    <a href="https://github.com/Forgo7ten/siyuan-widget-gist/releases"><img src="https://img.shields.io/badge/Release-v1.0.0-blue.svg?style=flat-square" alt="Release" /></a>
+    <a href="https://b3log.org/siyuan/"><img src="https://img.shields.io/badge/SiYuan-%E2%89%A53.7.0-6c5ce7.svg?style=flat-square" alt="SiYuan Support" /></a>
+  </p>
 
-## Development
+  <p>
+    <b>English</b> • <a href="README.zh-CN.md">简体中文</a>
+  </p>
 
-* widget.json
-* icon.png (optional default icon, 160*160)
-* preview.png (optional default preview, 1024*768)
-* README*.md
-* index.html
+  <p>
+    <a href="#overview">Overview</a> •
+    <a href="#features">Features</a> •
+    <a href="#usage">Usage</a> •
+    <a href="#installation">Installation</a> •
+    <a href="#development">Development</a>
+  </p>
+</div>
 
-## widget.json
+---
 
-```json
-{
-  "name": "widget-sample",
-  "author": "Vanessa",
-  "url": "https://github.com/siyuan-note/widget-sample",
-  "version": "0.0.5",
-  "minAppVersion": "3.7.0",
-  "displayName": {
-    "default": "Widget Sample",
-    "zh-CN": "挂件示例"
-  },
-  "description": {
-    "default": "This is a widget sample",
-    "zh-CN": "这是一个挂件示例"
-  },
-  "readme": {
-    "default": "README.md",
-    "zh-CN": "README.zh-CN.md"
-  },
-  "icon": "icon.png",
-  "preview": "preview.png",
-  "funding": {
-    "openCollective": "",
-    "patreon": "",
-    "github": "",
-    "custom": [
-      "https://ld246.com/sponsor"
-    ]
-  },
-  "keywords": [
-    "sample", "示例"
-  ]
-}
+# Overview
+
+**siyuan-widget-gist** is a standalone widget for [SiYuan Note](https://b3log.org/siyuan/) that embeds and displays GitHub Gist code snippets directly in your notes. Paste a Gist link or embed snippet, and the widget automatically loads the code and adapts to light and dark themes.
+
+---
+
+# Features
+
+- **Insert via `/Widget` Menu**: Insert directly from SiYuan's built-in `/Widget` (`/挂件`) menu (`GitHub Gist`). Multiple Gist widgets can be placed in the same document independently.
+- **Persistent Address Bar & Instant Save**: The top address bar stays visible at all times—muted and locked while viewing to stay out of the way. Double-click the address bar or click **Edit URL** to edit, then press `Enter` or click outside to save and refresh automatically; press `Esc` to cancel edits.
+- **SiYuan Fold / Unfold Support**: When the widget block is folded in SiYuan, only the Gist URL bar is displayed and the code area is unloaded to keep the note compact; unfolding automatically restores the Gist snippet.
+- **Saved & Synced with Your Note**: Each widget stores its Gist URL in the block's `custom-gist-url` attribute, syncing alongside your SiYuan documents and loading automatically when reopened.
+- **Light & Dark Theme Styling**: Enhances GitHub Gist typography, line numbers, and card borders while matching SiYuan's light and dark color modes.
+- **Auto Retry & Quick Refresh**: Automatically retries up to 10 times when network requests fail, with one-click **Refresh** and **Edit URL** buttons in the top bar.
+- **Auto Height**: Dynamically adjusts widget height to fit the full Gist snippet without vertical scrollbars inside the block.
+
+---
+
+# Usage
+
+1. Type `/Widget` (or `/挂件`) in a SiYuan document and select **GitHub Gist**;
+2. Paste any of the supported Gist formats below into the input bar, then press `Enter` or click outside the input box to save and load:
+
+```text
+https://gist.github.com/Forgo7ten/e0c40452cf8a0e8e4a9691136596a991
+https://gist.github.com/Forgo7ten/e0c40452cf8a0e8e4a9691136596a991.js
+https://gist.github.com/Forgo7ten/e0c40452cf8a0e8e4a9691136596a991.js?file=example.py
+<script src="https://gist.github.com/Forgo7ten/e0c40452cf8a0e8e4a9691136596a991.js"></script>
 ```
 
-* `name`: Widget name, must be the same as the repo name, and must be unique globally (no duplicate widget names in the
-  marketplace)
-* `author`: Widget author name
-* `url`: Widget repo URL
-* `version`: Widget version number, it is recommended to follow the [semver](https://semver.org/) specification
-* `minAppVersion`: Minimum version number of SiYuan required to use this widget
-* `displayName`: Widget display name, mainly used for display in the marketplace list, supports multiple languages
-    * `default`: Default language, must exist
-    * `zh-CN`, `en` and other languages: optional, must be [BCP 47](https://tools.ietf.org/html/bcp47) tags (e.g. `zh-CN`, `zh-TW`, `en`, `ja`, `pt-BR`)
-* `description`: Widget description, mainly used for display in the marketplace list, supports multiple languages
-    * `default`: Default language, must exist
-    * `zh-CN`, `en` and other languages: optional, must be BCP 47 tags
-* `readme`: readme file name, mainly used to display in the marketplace details page, supports multiple languages
-    * `default`: Default language, must exist
-    * `zh-CN`, `en` and other languages: optional, must be BCP 47 tags
-    * Relative images are loaded from `package.zip` when present; otherwise the online marketplace falls back to the matching GitHub Release. Include them in `package.zip` for offline use
-* `icon`: Optional marketplace icon filename at the package root. Supports PNG, JPEG, WebP, and AVIF up to 64 KiB; the recommended size is 160*160
-* `preview`: Optional marketplace preview filename at the package root. Supports PNG, JPEG, WebP, and AVIF up to 512 KiB; the recommended size is 1024*768
-    * SVG is unsupported. To omit an image, remove its field and the legacy `icon.png` or `preview.png`; an empty field value is invalid
-* `funding`: Widget sponsorship information
-    * `openCollective`: Open Collective name
-    * `patreon`: Patreon name
-    * `github`: GitHub login name
-    * `custom`: Custom sponsorship link list
-    * `links`: Labeled custom sponsorship links, for example `{"label": "Sponsor", "url": "https://example.com"}`
-* `keywords`: Search keyword list, used for marketplace search function
+3. Once saved, the input bar locks into a subtle muted state. Double-click the input bar or click the **Edit URL** icon on the right to change the address, or click **Refresh Gist** to reload the latest snippet.
 
-## Package
+---
 
-No matter which method is used to compile and package, we finally need to generate a package.zip, which contains at
-least the following files:
+# Installation
 
-* Image files declared by `icon` and `preview` (optional)
-* README*.md
-* widget.json
-* index.html
+- **Marketplace (Recommended)**: In SiYuan Note, open **Settings -> Marketplace -> Widgets**, search for `GitHub Gist`, and download.
+- **Manual Installation**: Download `package.zip` from the [Releases page](https://github.com/Forgo7ten/siyuan-widget-gist/releases) and extract it into `data/widgets/siyuan-widget-gist/` inside your SiYuan workspace.
 
-## List on the marketplace
+---
 
-* Generate the package.zip
-* Create a new GitHub release using your new version number as the "Tag version". See here for an
-  example: https://github.com/siyuan-note/widget-sample/releases
-* Upload the file package.zip as binary attachments
-* Publish the release
+# Development
 
-For the first release, fork the [community bazaar repository](https://github.com/siyuan-note/bazaar), add one `owner/repo` line to `widgets.txt` in its root, and open a PR against `main`. Use one repository per line without commas or empty lines, and add only one new package per PR. See [Submitting a bazaar package](https://github.com/siyuan-note/bazaar#submitting-a-bazaar-package) for the full process and review rules.
+### Requirements
+- Node.js >= 24.0.0
+- pnpm >= 11.4.0
+- SiYuan Note >= 3.7.0
 
-After the PR is merged, the bazaar updates its index automatically. For subsequent updates, increase `version` in the package manifest and publish a regular GitHub Release containing `package.zip`; no additional listing PR is needed. See [Updating a bazaar package](https://github.com/siyuan-note/bazaar#updating-a-bazaar-package) for update timing and troubleshooting, and check deployment status in the [Stage workflow](https://github.com/siyuan-note/bazaar/actions/workflows/stage.yml).
+### Commands
+```bash
+# Install build dependencies
+pnpm install
+
+# Syntax check
+pnpm run check
+
+# Render SVG icons and build dist/ + package.zip
+pnpm run build
+
+# Verify package structure and archive entries
+pnpm run package:verify
+
+# Build and install into a local SiYuan workspace
+pnpm run install:workspace -- "/path/to/SiYuan/workspace"
+
+# Bump version across package.json and widget.json
+pnpm run version:bump
+
+# Run full local release verification pipeline
+pnpm run release
+
+# Clean generated artifacts
+pnpm run clean
+```

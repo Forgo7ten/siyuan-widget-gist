@@ -1,0 +1,36 @@
+{
+  "name": "siyuan-widget-gist",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Insert and display GitHub Gist code snippets in SiYuan Note. Paste a Gist link or embed code to load automatically.",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "render:icons": "node scripts/build/render-icons.mjs",
+    "check": "node --check main.js && node --check src/url.js && node --check src/sandbox-doc.js && node --check src/host.js && node --check src/loader.js",
+    "build": "pnpm run check && pnpm run render:icons && node scripts/build/package-zip.mjs",
+    "build:fast": "pnpm run render:icons && node scripts/build/package-zip.mjs",
+    "install:workspace": "pnpm run build && node scripts/dev/install-workspace.mjs",
+    "package:verify": "node scripts/release/verify-package.mjs",
+    "version:bump": "node scripts/release/update-version.mjs",
+    "release": "node scripts/release/release.mjs",
+    "clean": "node scripts/clean.mjs"
+  },
+  "keywords": [
+    "siyuan",
+    "siyuan-note",
+    "siyuan-widget",
+    "siyuan-widget-gist",
+    "github-gist"
+  ],
+  "author": "Forgo7ten",
+  "license": "MIT",
+  "packageManager": "pnpm@11.4.0",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2"
+  },
+  "repository": "https://github.com/Forgo7ten/siyuan-widget-gist"
+}
